@@ -17,3 +17,8 @@ adrs/
 
 # Drafts that aren't ready to publish yet
 drafts/
+
+# Promotion tooling. Local-only by necessity, not by preference: it hardcodes
+# the private workshop's path and carries the codename denylist, so publishing
+# it would trip the very audit it runs.
+ops/
