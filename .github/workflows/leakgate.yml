@@ -27,28 +27,60 @@ concurrency:
   group: leakgate-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   gate:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
 
       - name: Absolute home paths (error)
         run: |
           set -uo pipefail
+          # `git ls-files`, not a glob: a root-level `*.md` scans only the top
+          # directory, so a future `entries/` subdirectory would go unscanned
+          # while the entry-count guard below still saw the old root files and
+          # reported a healthy pass. Tracked-files-at-any-depth is also the
+          # exactly-right set — what is tracked is what is published.
+          mapfile -t files < <(git ls-files '*.md')
+          mapfile -t entries < <(git ls-files '*.md' | grep -E '(^|/)2[0-9]{3}-[0-9]{2}-[0-9]{2}\.md$' || true)
+
+          # A gate that scanned nothing must not report clean.
+          if [ ${#entries[@]} -eq 0 ]; then
+            echo "::error::no dated entry files matched - gate scanned nothing"
+            exit 1
+          fi
+
           # The entries legitimately DISCUSS the placeholder forms `/home/<user>/`
           # and `/home/.../` as subject matter — they are what the workshop's leak
           # tooling searches for. The leading character class excludes `<` and `.`
           # so those never match; only a real username does.
-          re='(/home/|/Users/)[A-Za-z0-9_][A-Za-z0-9._-]*/|-home-[A-Za-z0-9_][A-Za-z0-9._-]*-'
-          if hits=$(grep -nE "$re" -- *.md); then
+          #
+          # No trailing `/` or `-` is required. Demanding one let a bare `/home/kv`
+          # or `-home-kv` through, and it was never what excluded the placeholders
+          # — the leading character class does all of that work.
+          re='(/home/|/Users/)[A-Za-z0-9_][A-Za-z0-9._-]*|-home-[A-Za-z0-9_][A-Za-z0-9._-]*'
+          status=0
+          hits=$(grep -nE "$re" -- "${files[@]}") || status=$?
+
+          # grep's exit codes are 0 match / 1 no-match / 2+ error, and only the
+          # middle one means clean. Collapsing 2 into "no match" is how a gate
+          # reports success because it failed to run.
+          if [ "$status" -gt 1 ]; then
+            echo "::error::grep exited $status - the scan did not run"
+            exit 1
+          fi
+          if [ "$status" -eq 0 ]; then
             printf '%s\n' "$hits" | while IFS= read -r l; do
               printf '::error file=%s::absolute home path: %s\n' "${l%%:*}" "$l"
             done
             echo "FAIL: real home paths in published content"
             exit 1
           fi
-          echo "no absolute home paths"
+          echo "no absolute home paths (${#files[@]} files, ${#entries[@]} entries scanned)"
 
       - name: Tilde paths and sha-like tokens (annotate only)
         run: |
@@ -60,7 +92,9 @@ jobs:
           # grep exiting 1 on NO MATCHES would abort this step — turning the
           # cleanest possible tree into a red run, which is the failure direction
           # that gets a gate disabled rather than fixed.
-          hits=$(grep -nE '~/[A-Za-z0-9._/-]+|\b[0-9a-f]{16,40}\b' -- *.md || true)
+          mapfile -t files < <(git ls-files '*.md')
+          [ ${#files[@]} -gt 0 ] || { echo "::error::nothing to scan"; exit 1; }
+          hits=$(grep -nE '~/[A-Za-z0-9._/-]+|\b[0-9a-f]{16,40}\b' -- "${files[@]}" || true)
           if [ -n "$hits" ]; then
             printf '%s\n' "$hits" | while IFS= read -r l; do
               printf '::warning file=%s::review: %s\n' "${l%%:*}" "$l"
@@ -74,9 +108,19 @@ jobs:
           # The index is generated on every promote, so drift means the generator
           # or a hand-edit broke — and a dead link is the first thing a stranger
           # hits. Cheap to check, and nothing else checks it.
+          mapfile -t entries < <(git ls-files '*.md' | grep -E '(^|/)2[0-9]{3}-[0-9]{2}-[0-9]{2}\.md$' || true)
+          [ ${#entries[@]} -gt 0 ] || { echo "::error::no entries to check"; exit 1; }
+
           rc=0
-          for f in 2*.md; do
-            grep -q "\[${f%.md}\](\./$f)" README.md || {
+          # -F, not a regex: the unescaped dots in `2026-05-19.md` are wildcards
+          # in BRE, so the pattern would match links it should not.
+          #
+          # Link text is the basename (the date); the target keeps whatever path
+          # git reported, so this still reads correctly if entries ever move below
+          # the root rather than emitting a nonsense `[entries/2026-07-31]`.
+          for f in "${entries[@]}"; do
+            b=$(basename "$f" .md)
+            grep -qF "[$b](./$f)" README.md || {
               printf '::error file=README.md::entry not linked from index: %s\n' "$f"; rc=1; }
           done
           while IFS= read -r l; do
