@@ -1,0 +1,86 @@
+name: leakgate
+
+# The negative-space gate over the published tree.
+#
+# The workshop that produces these entries is private; this repo is what gets
+# published from it. Promotion runs a three-tier audit locally, but that tool
+# is local-only by necessity, so nothing was checking the *public* side. This
+# is that check — the last gate before content is visible to strangers.
+#
+# What this enforces is the PATTERN half only: real absolute home paths and
+# their dash-encoded form fail the run. The secret-token half — host name,
+# private repo and tool codenames — is deliberately absent, because a denylist
+# committed to a public repo naming those tokens would itself be the leak it
+# guards against. That half stays a local run (`ops/promote.sh audit`), which
+# is also the only tier that can see them.
+#
+# Consequence worth stating rather than discovering: a green run here does NOT
+# mean an entry is clean, only that it carries no home path. Do not read this
+# badge as a substitute for the local audit.
+
+on:
+  pull_request:
+  push:
+    branches: [dev, main]
+
+concurrency:
+  group: leakgate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Absolute home paths (error)
+        run: |
+          set -uo pipefail
+          # The entries legitimately DISCUSS the placeholder forms `/home/<user>/`
+          # and `/home/.../` as subject matter — they are what the workshop's leak
+          # tooling searches for. The leading character class excludes `<` and `.`
+          # so those never match; only a real username does.
+          re='(/home/|/Users/)[A-Za-z0-9_][A-Za-z0-9._-]*/|-home-[A-Za-z0-9_][A-Za-z0-9._-]*-'
+          if hits=$(grep -nE "$re" -- *.md); then
+            printf '%s\n' "$hits" | while IFS= read -r l; do
+              printf '::error file=%s::absolute home path: %s\n' "${l%%:*}" "$l"
+            done
+            echo "FAIL: real home paths in published content"
+            exit 1
+          fi
+          echo "no absolute home paths"
+
+      - name: Tilde paths and sha-like tokens (annotate only)
+        run: |
+          set -uo pipefail
+          # Non-blocking: `~/.claude/` is Claude Code's own documented convention
+          # and appears in entries about it. Surfaced so it stays visible.
+          #
+          # The `|| true` is load-bearing. GitHub's default shell is `bash -e`, so
+          # grep exiting 1 on NO MATCHES would abort this step — turning the
+          # cleanest possible tree into a red run, which is the failure direction
+          # that gets a gate disabled rather than fixed.
+          hits=$(grep -nE '~/[A-Za-z0-9._/-]+|\b[0-9a-f]{16,40}\b' -- *.md || true)
+          if [ -n "$hits" ]; then
+            printf '%s\n' "$hits" | while IFS= read -r l; do
+              printf '::warning file=%s::review: %s\n' "${l%%:*}" "$l"
+            done
+          fi
+          echo "annotations emitted (non-blocking)"
+
+      - name: README index matches the entry tree
+        run: |
+          set -uo pipefail
+          # The index is generated on every promote, so drift means the generator
+          # or a hand-edit broke — and a dead link is the first thing a stranger
+          # hits. Cheap to check, and nothing else checks it.
+          rc=0
+          for f in 2*.md; do
+            grep -q "\[${f%.md}\](\./$f)" README.md || {
+              printf '::error file=README.md::entry not linked from index: %s\n' "$f"; rc=1; }
+          done
+          while IFS= read -r l; do
+            [ -f "$l" ] || { printf '::error file=README.md::dead link: %s\n' "$l"; rc=1; }
+          done < <(grep -oE '\(\./2[0-9-]+\.md\)' README.md | sed -E 's#^\(\./##; s#\)$##')
+          if [ "$rc" -eq 0 ]; then echo "index and tree agree"; fi
+          exit $rc
