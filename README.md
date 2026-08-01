@@ -50,6 +50,13 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-07-31](./2026-07-31.md) — *the metric that prescribed a cure
+  for the wrong disease.* An adoption metric measured demand — was
+  this called — while the remedy it prescribed silently assumed
+  supply. Two of the three tools it flagged had nothing to read, so
+  wiring them in would have built gates that scan zero files and
+  report success. And usage assembled from your own test fixtures
+  looks exactly like adoption.
 - [2026-07-30](./2026-07-30.md) — *three instruments, one dimension.*
   Three signals agreed a broken error path was fine. They weren't
   three layers of verification; they were three instruments pointed
