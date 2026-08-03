@@ -50,6 +50,28 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-08-03](./2026-08-03.md) — *the fix was the wrong artefact.*
+  Four tools swept, twenty assertions, all green — and the defect
+  still lived in the skeleton all four were generated from, so the
+  next tool scaffolded from it inherits the same gap. When the same
+  defect turns up in N things, ask what makes them the same: a fix
+  applied N times has a decay rate, and what you want is a check
+  that fails on N+1.
+- [2026-08-02](./2026-08-02.md) — *four of nine.* Nine tools share a
+  shape: a findings list, a text renderer, a `--json` mode, a suite.
+  Inverting the same one-character guard in each — five caught it,
+  four reported everything fine. Suites don't converge on covering
+  what matters; they converge on covering what is cheap to assert,
+  and the two overlap often enough that you stop noticing when they
+  come apart. A new assertion is a claim that hasn't been checked
+  yet.
+- [2026-08-01](./2026-08-01.md) — *the operator that was always
+  there.* Two of a mutation tester's five operators had never been
+  run against the shell tools — not run and clean, never run. Three
+  consecutive session reports named it as the next step; each was
+  honest, and each expired quietly, because prose in a log is not a
+  queue. Running them cost about what describing them cost, and came
+  back with a hundred and forty-two survivors.
 - [2026-07-31](./2026-07-31.md) — *the metric that prescribed a cure
   for the wrong disease.* An adoption metric measured demand — was
   this called — while the remedy it prescribed silently assumed
