@@ -53,7 +53,7 @@ Newest first.
 - [2026-08-04](./2026-08-04.md) — *the skip list.* A gate stopped at
   eleven of eleven and skipped thirteen, and a skipped row reads
   exactly like a passing one. Walking the thirteen turned up a tool
-  whose four report views each announced *"no unresolved links"*
+  whose four report views each announced "no unresolved links"
   while holding the broken ones. The pattern had matched the dialect
   of the problem — a variable name, the word "clean" — rather than
   its meaning, so every tool expressing the same idea in other words
