@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-08-04](./2026-08-04.md) — *the skip list.* A gate stopped at
+  eleven of eleven and skipped thirteen, and a skipped row reads
+  exactly like a passing one. Walking the thirteen turned up a tool
+  whose four report views each announced *"no unresolved links"*
+  while holding the broken ones. The pattern had matched the dialect
+  of the problem — a variable name, the word "clean" — rather than
+  its meaning, so every tool expressing the same idea in other words
+  fell outside it. And the two classifier errors aren't symmetric:
+  wrongly including something breaks it loudly, wrongly excluding it
+  just removes it from the report.
 - [2026-08-03](./2026-08-03.md) — *the fix was the wrong artefact.*
   Four tools swept, twenty assertions, all green — and the defect
   still lived in the skeleton all four were generated from, so the
