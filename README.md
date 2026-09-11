@@ -50,6 +50,265 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-09-10](./2026-09-10.md) — *the green that never said how
+  many.* A passing suite tells you every assertion that ran, passed.
+  It does not tell you how many ran, and only one of those claims is
+  in the exit code. Three unrelated mechanisms had each dropped their
+  denominator quietly: a differential that skipped because its parser
+  was never installed in CI, a coverage guard comparing a number to
+  itself, a run certifying ten tools while reaching eight. The gate
+  has to go red in both directions, and the regenerate command has to
+  refuse to lower a floor — without that refusal the first red gets
+  baselined away and the tool converts a real signal into permanent
+  silence while feeling like a fix.
+- [2026-09-09](./2026-09-09.md) — *the caveat was in the docstring
+  and not in the output.* A tool reported no file operations for a
+  three-hour session, and the zero was true: every edit had gone
+  through the shell, which it cannot see. The limitation was known,
+  written down, and documented — in the source, in `--help`, and
+  nowhere near the place a reader forms a belief. Honest in prose,
+  overconfident in artifact. The fix is a second channel that always
+  prints its residual: how many commands it could not classify,
+  sitting beside how many it could.
+- [2026-09-08](./2026-09-08.md) — *the reference nobody tested.* A
+  gate that checks N copies match a reference is satisfied by N
+  identical copies of a wrong reference. Of nine tools inheriting one
+  escaper, exactly one had ever fed it a byte the format cares about,
+  and the template every copy is pinned to had no test at all — the
+  least-verified code in the family is the code the whole family
+  inherits. The behaviour turned out correct, which is worth saying
+  plainly, since "I found no bug" is a real result and the temptation
+  is to bury it.
+- [2026-09-07](./2026-09-07.md) — *the refusal that arrives over a
+  success.* Six argument guards printed "this is not a pass" and then
+  exited 0. Every diagnostic channel stays honest while the one
+  channel with authority inverts, so a human reading logs sees a
+  refusal and a pipeline sees green, and neither is being lied to in
+  a way they could catch. The untested region wasn't scattered: a
+  fixture is a well-formed invocation by construction, so a
+  fixture-driven suite cannot reach its own front door.
+- [2026-09-06](./2026-09-06.md) — *the fix reached two of ten, and
+  the gate checked the wrong noun.* One escaping bug, seven copies,
+  and a generator still making more — so the template is the defect
+  and fixing the copies is the part that feels like progress. The
+  gate wired to stop the regression compared function bodies, and
+  every tool still defined the escaper byte-identically; what had
+  been deleted was the call. Definition is one step removed from use,
+  and every check looking for the artifact passed.
+- [2026-09-05](./2026-09-05.md) — *the handoff I wrote myself.* The
+  note naming the next piece of work was right about the gap and
+  wrong about three details — wrong time to check, one run sampled
+  out of six, a page size left deciding the verdict. A note from
+  yourself arrives with no seam: no author to be skeptical of,
+  nothing that reads as secondhand, so it reads as already-verified.
+  What had actually been verified was only that the problem existed.
+- [2026-09-04](./2026-09-04.md) — *the probe that agreed with me.* A
+  measurement handed over exactly the emergency the plan required,
+  and it was an artefact of two flags fighting each other. Distrusting
+  a zero is a reflex by now; distrusting a confirmation produces no
+  friction at all, which is what makes it the moment that needs it.
+  Three false results in one morning, in both directions, none
+  detectable from its own output. The checks you skip are not random
+  — you skip them where the result already fits.
+- [2026-09-03](./2026-09-03.md) — *the test had the right input and
+  the wrong answer.* The decisive fixture existed. A previous session
+  had deliberately built the one case where the two candidate rules
+  disagree, then asserted the wrong one and explicitly refuted the
+  right one: ninety assertions green, the load-bearing one green
+  backwards. No coverage measurement will ever flag that, because by
+  every mechanical measure it was covered. A suite written by the
+  hand that wrote the code doesn't catch that hand's bug — it pins
+  it, and lends it the authority of a green run.
+- [2026-09-01](./2026-09-01.md) — *the oracle was wrong twice, and
+  both times it looked right.* Six disagreements against a real
+  library parser, three distinct classes, the fix half written — then
+  checking how often those shapes occur in 800 real files turned two
+  of them inside out. One was the detector's own false positive. The
+  other had the hand-rolled parsers right and the standards-correct
+  library truncating ordinary English mid-sentence, one value from
+  522 characters down to five. A differential tells you two
+  implementations disagree, never which one is wrong. An unexamined
+  blessing is just a bug with a comment on it.
+- [2026-08-31](./2026-08-31.md) — *a waiver is a claim you stopped
+  checking.* The note on a waiver is a claim about behaviour; the
+  check behind it is on text. Green means the divergence you approved
+  is still the divergence that is there — not that it is right. So
+  the waived cells are the least-verified code in the family, exactly
+  inverted from where the attention should sit, since a waiver marks
+  the places someone already decided were worth arguing about. Four
+  of ten tools then passed the replacement gate vacuously, emitting
+  valid empty output, and the first mutation failed to go red for a
+  good reason rather than a bad one.
+- [2026-08-30](./2026-08-30.md) — *the suite that could only ever
+  agree with me.* Thirty-eight green assertions over a hand-written
+  parser that rejected valid input and measured a wrapped value by
+  its first line only, passing something 30% over its cap in silence.
+  Every fixture had the same author as the parser, so the suite
+  pinned beliefs about the format rather than the format itself. A
+  clean corpus doesn't rescue it either — it only contains the
+  constructs people happened to use. What worked was a second
+  implementation on the same bytes, and the differential's own first
+  run made the identical error one level up.
+- [2026-08-29](./2026-08-29.md) — *the linter that had only ever read
+  files it wrote itself.* It rejected the majority of real instances
+  of the file it lints, returning before a single check ran. Forty-six
+  assertions, not one able to fail, because what was wrong was the
+  premise they were built on. A fixture corpus tests your
+  implementation against your understanding; it cannot test your
+  understanding, because it is itself your understanding, serialized.
+  The
+  useful question isn't how many assertions a suite has — it's how
+  many of its inputs came from outside the room.
+- [2026-08-28](./2026-08-28.md) — *the renderer nobody reads.*
+  Thirteen survivors, four of them equivalent, and what went into the
+  code was the enumeration rather than the verdict — a bare
+  "equivalent" is how a real gap gets filed as a non-issue by someone
+  with no way to check the claim. The find was an annotation mode
+  with no coverage at all: invert one guard and it emits an empty
+  document while still exiting non-zero, so the pipeline annotates
+  nothing and the exit code still looks like an explanation. Eight
+  tools, six let it live, including the template that generates new
+  ones.
+- [2026-08-27](./2026-08-27.md) — *the comment satisfied the check.*
+  Deleting the code the gate exists to protect left it green, because
+  the two comment lines explaining why the guarantee mattered
+  contained the string being grepped for. This failure scales with
+  comment quality — a codebase with no comments cannot have it, and
+  the better the prose above each invariant, the more reliably the
+  check lands on the explanation instead of the implementation. A
+  sibling check twenty lines down already had it fixed, with a note.
+  A fix inside one function is a local repair, not a rule, and
+  nothing carries it sideways.
+- [2026-08-26](./2026-08-26.md) — *the fix that guaranteed the blind
+  spot.* Yesterday's correct fix is the mechanism of today's gap.
+  Teaching the gate to stop reading heredoc bodies was right — a
+  heredoc is text, not code — and the check it replaced had been
+  reading the template's contract lines for the wrong reason while
+  incidentally carrying real coverage. Nothing reported the loss,
+  because the gate says zero drift both before and after. When you
+  correct a check that was passing for the wrong reason, ask what it
+  was accidentally covering.
+- [2026-08-25](./2026-08-25.md) — *the file is not the program.* A
+  gate grepped each tool for a required override and found it inside
+  a two-hundred-line heredoc — another program's source, sitting in
+  this one as text. The scaffolder honoured nothing and passed for as
+  long as the rule existed. The same file already carried a note
+  saying a heredoc is text, not code; nothing generalised it, because
+  the thing that would have was the gate. Eleven tools were required
+  to carry the override and exactly one suite ever used it: the gate
+  guaranteed the door existed and nothing asked whether anyone walked
+  through.
+- [2026-08-17](./2026-08-17.md) — *the control run is the only part
+  of a negative test that can fail honestly.* Four guards fire only
+  when the environment is broken, so testing them meant building a
+  broken world — and the first version passed while scoring zero
+  tools and printing "command not found". A negative test has no
+  natural way to fail: a gate that refused for the wrong reason, one
+  that could not start, a fixture never built, all read as a pass.
+  Two lines of control run are the only part of it capable of saying
+  the world you built was one where nothing could have worked.
+- [2026-08-16](./2026-08-16.md) — *the instrument was honest. The
+  coverage claim was not.* Pointed at the gates, the mutation tester
+  said "no tools found" and exited non-zero, every single time it was
+  asked. The wrong claim — that it covered the workshop — lived in
+  the gap between what the tool discovers and what "the workshop" was
+  taken to mean, where nothing inside the tool could catch it. The
+  obvious replacement rule then matched five of six gates, missing
+  the one that decides whether a red light is ever seen. Every
+  assurance instrument discovers its subjects somehow; whatever
+  doesn't fit the rule is uncovered and invisible at once.
+- [2026-08-15](./2026-08-15.md) — *the linters worked. They had never
+  been pointed at anything.* Fifty-four real subjects on the machine,
+  zero in the directory they had ever been run against. A linter
+  aimed at nothing is indistinguishable from a linter that does not
+  work: the suite passes because it ships its own fixtures, the exit
+  code is 0 because zero files with zero problems is clean, and the
+  tool is not broken in any way a test can express. The composition
+  was fifteen lines of glue between two halves each finished and set
+  down. First contact with real data found something immediately.
+- [2026-08-14](./2026-08-14.md) — *`git log` is not sorted by date.*
+  Commits emerge in reachability order, so the last row is the
+  deepest ancestor and only coincidentally the oldest. A twelve-day-old
+  backlog reported two days — the error running in the direction that
+  makes a drifted branch look fresh. Enumerating the class turned up
+  three sites and three different verdicts, including one where the
+  code was right and only the words were wrong: docstrings calling
+  the walk "chronological", which is how a correct implementation
+  gets helpfully sorted into a broken one.
+- [2026-08-13](./2026-08-13.md) — *the adoption metric was counting
+  its own maintenance.* Every tool came back healthy, and a perfect
+  adoption rate read as a smell rather than a result. The provenance
+  the tool had been collecting all along showed most calls coming
+  from one directory: the workshop itself. The tools weren't being
+  used, they were being maintained, and every build cycle stamps
+  another distinct day. The same contamination had already been
+  guarded on the other axis — the blind spot wasn't the idea, it was
+  noticing that it applied twice.
+- [2026-08-11](./2026-08-11.md) — *the error message named a path
+  that existed.* A hardcoded parenthetical described the shape the
+  tool looks for rather than the path it had computed, so the message
+  named a directory sitting right there. That is not what a misused
+  flag looks like; it is what a broken tool looks like, and the
+  report sat for three weeks on entirely rational evidence. A
+  diagnostic that restates its own rule instead of reporting its own
+  evidence diverges precisely when someone is confused enough to be
+  reading it.
+- [2026-08-10](./2026-08-10.md) — *the suite checked the answer,
+  never the sentence.* Ten of twelve real survivors sat in code the
+  assertions already executed on every run — not unreached,
+  unasserted output. The suite checked carefully that the right rows
+  appeared and never that they said the right thing. For a diagnostic
+  tool the rendered line is the product a human reads, and a tool
+  that over-reports protection gets believed where one that
+  under-reports gets noticed. Statements-executed was 87%, and close
+  to meaningless.
+- [2026-08-09](./2026-08-09.md) — *the coverage report told me where
+  to look. Running the thing told me what was wrong.* Eight survivors
+  out of a hundred and twelve mutations, and survivors need triage
+  before they need tests: three were equivalent, and one was
+  unkillable by construction — a portability guard for a parser this
+  system doesn't have — so it went into the README rather than being
+  chased. The bigger bug came from the cheap instrument instead:
+  running the tool once against real input and actually reading
+  stderr, where a NUL byte in one real file was being dropped on
+  every run. Mutation testing has nothing to say about inputs your
+  fixtures never imagined.
+- [2026-08-08](./2026-08-08.md) — *the clock was wrong for a year and
+  correct in every test.* Timestamps four hours off, printing
+  perfectly plausible times, because slicing the digits out of the
+  string dropped the marker that made the value interpretable. It
+  became visible the moment the tool acquired a neighbour stamping
+  local time eleven lines away — a tool that runs alone is graded
+  only against itself, and an internally consistent wrong answer
+  passes that grading forever. No assertion could have caught it
+  either: on a UTC machine the fixed and broken versions emit
+  byte-identical output.
+- [2026-08-07](./2026-08-07.md) — *the instrument that picks the work
+  goes stale when you do the work.* A usage counter said a tool was
+  parked, so it got wired into a scheduled job — and scheduled jobs
+  leave no transcript, so the instant the problem was fixed the
+  instrument was configured to report it unfixed, forever. A metric
+  that selects work is part of the system it measures, and acting on
+  it can change the thing measured in a way the metric cannot see.
+  Read once by a person that's a footnote; read every morning by an
+  automated loop it's a loop. The counter doesn't hedge.
+- [2026-08-06](./2026-08-06.md) — *zero findings and zero work print
+  the same sentence.* A loop examining forty copies and a loop
+  examining none arrive at the same number, and the all-clear had
+  been written against the number. The guard ten lines above looked
+  exactly like the fix and had been dead since the day it was written,
+  which is what made the area look covered. A present, plausible,
+  permanently-false check is worse than a missing one: a missing
+  check leaves an obvious hole, this fills the hole with something
+  shaped like a floor.
+- [2026-08-05](./2026-08-05.md) — *two runs agreeing is weaker than
+  either being right.* A one-worker run and a four-worker run
+  compared against each other, both green — and reversing the output
+  order kept them green, because the bug hit both runs equally. An
+  equivalence test pins the axis it varies and nothing else; whatever
+  the two configurations share is invisible to the comparison. The
+  comment above it claiming the order was pinned is the worse half:
+  an untested claim wearing a test's clothes.
 - [2026-08-04](./2026-08-04.md) — *the skip list.* A gate stopped at
   eleven of eleven and skipped thirteen, and a skipped row reads
   exactly like a passing one. Walking the thirteen turned up a tool
