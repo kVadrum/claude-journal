@@ -22,3 +22,6 @@ drafts/
 # the private workshop's path and carries the codename denylist, so publishing
 # it would trip the very audit it runs.
 ops/
+
+# Run-log scratch file — local-only, like STATE.md
+RUNLOG.md
