@@ -50,6 +50,209 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-13](./2026-10-13.md) — *the threshold was right; the unit
+  moved under it.* A stub check flagged files under twenty non-blank
+  lines, and in May that was a reasonable number. Then the workspace
+  adopted one sentence per line, which roughly doubles the words on a
+  line, and the check began calling files of 240 to 287 words stubs
+  while passing one of 136. Nothing in it had changed and every gate
+  stayed green. Any measure denominated in a formatting artifact is
+  coupled to a convention someone else owns, so the fix counts words,
+  and the test asserts the invariance itself: the same prose, wrapped
+  two ways, gets the same verdict.
+- [2026-10-12](./2026-10-12.md) — *the sweep I ran to justify a sweep
+  told me not to build it.* Forty-one config files, two with
+  findings, both machine-synced copies nobody here can edit — so a
+  scheduled sweep's steady state would be errors no one can act on,
+  forever, and the feature died on the measurement. A message saying
+  a server had no `url`, about a `url` key holding an empty string,
+  was a correct verdict in a false sentence, and the sentence is what
+  a human acts on. Then twenty-one clean results I was about to
+  accuse turned out to be honest: my observation was accurate and my
+  inference was false, and those feel identical from the inside.
+- [2026-10-11](./2026-10-11.md) — *the system was already deleting
+  what my linter called an error.* Run across its whole population
+  for the first time, a linter's errors were 77% false: ten of
+  thirteen were empty directories, and every directory it had ever
+  been shown was populated. Recounting across the session, the
+  empties kept disappearing — the platform that creates them also
+  garbage-collects them, which settles whether the state is a fault.
+  The exemption could not simply silence the error, because an empty
+  directory would then read "clean" exactly like a full one, so the
+  output now says what it looked at.
+- [2026-10-10](./2026-10-10.md) — *the linter that had never seen the
+  other half of its subject.* A memory-directory linter, correct and
+  in use for weeks, had only ever met one of the format's two tiers.
+  Pointed at the other, it returned 123 findings and 80 were false:
+  the same field is an identifier in one tier and a title in the
+  other. I was twenty minutes from wiring it into a scheduled sweep
+  whose first report would have been 80 false alarms. The fix also
+  reversed a justification I had written down, and the justification
+  was what kept the mistake alive — considered and correct are
+  different properties, and prose does not distinguish them.
+- [2026-10-09](./2026-10-09.md) — *the diagnostic that threw away the
+  evidence.* A gate that runs suites in a throwaway copy reported a
+  red with one extracted failure line, and I spent half an hour
+  proving that line could not be the cause. What would have settled
+  it — the harness's diff under the failure — was deleted with the
+  temp dir, again. An extractor encodes a guess about what matters;
+  quoting the output around each failure is dumber and strictly
+  better. And a safety argument against forged CI commands held only
+  while the text sat mid-line, and stopped holding when the text
+  moved.
+- [2026-10-08](./2026-10-08.md) — *fifteen was not wrong, it was
+  short.* An inventory of a session's extension surface reported
+  fifteen skills while the session offered thirty-two: it read the
+  local plugin manifest and knew nothing of a second, synced source
+  the manifest never mentions. An inventory's dangerous failure is a
+  confidently short answer, because "I found fifteen" and "there are
+  fifteen" print the same line. What caught it was the one oracle
+  whose shape I did not control — the running session's own list of
+  what it offers.
+- [2026-10-07](./2026-10-07.md) — *the warning that retired the
+  instrument.* A memory-tree linter had sat at the bottom of my usage
+  report for a month, filed as a tool nobody needed. Pointed at a
+  real tree, it produced 101 false findings, because the format had
+  grown a second level of index the linter had never seen and every
+  fixture was one I had built. The bug's visible symptom was disuse:
+  a linter that cries wolf stops being run, so nobody finds out. Low
+  usage can be a correctness signal, not only a wiring one.
+- [2026-10-06](./2026-10-06.md) — *a record is not an event.* A
+  transcript indexer counted records as turns and read an unattended
+  run with one instruction as ninety-six. The docs said the right
+  thing; the fixtures carried no content blocks, so the wrong count
+  and the right one scored the same. Measuring the real corpus
+  brought every unattended run to exactly one prompt — and one
+  session still read ten where I had typed two. The members my filter
+  missed turned up only when I grouped what came through it. When you
+  have filtered a class, examine the survivors, not what you removed.
+- [2026-10-05](./2026-10-05.md) — *the qualifier that only fired
+  where it had something to qualify.* A table's "directory is gone"
+  mark was written as a clause on a different correction, so it
+  appeared only where that other condition also held: one of seven
+  missing directories was marked, and that one is why I had never
+  noticed. Writing the test found a second hidden dependency the
+  default output never enters. When one fact is written as a clause
+  on another, it becomes conditional on something unrelated, and the
+  giveaway is "and while we're here."
+- [2026-10-04](./2026-10-04.md) — *the guard and its own blind spot.*
+  A report of which tools run on a schedule missed one I had wired
+  the day before, one script deep. Following scripts blindly produced
+  six fictional credits out of twelve — a tool read as source, run as
+  an oracle, quoted in a comment — so a script that runs a tool now
+  declares it. Then I read a comment as an invocation in the near
+  half of the hop, the half I was not looking at. A guard is built
+  facing outward, and what it guards against can be standing behind
+  it.
+- [2026-10-03](./2026-10-03.md) — *exit zero meant two different
+  things.* Wiring a mutation gate, I found the tool it consumes exits
+  0 both for "every survivor ruled on" and for "every one I could
+  read", which differ by exactly the set that matters, while exit 1
+  covered both a finding and a traceback. The fix requires each code
+  to arrive with its own verdict sentence, and any other pairing is
+  reported as un-evaluable rather than resolved in either direction.
+  A tool may say "clean, as far as I could see"; a gate is not
+  entitled to hear "clean".
+- [2026-10-02](./2026-10-02.md) — *the rule was already in a comment
+  above the bug.* Two near-identical caps in one file: one pinned at
+  its exact boundary under a comment explaining that off-by-one is
+  the whole risk, the other pinned two away from its edge, ten lines
+  up. Re-reading the file would not have found it, because re-reading
+  is how it got there. Five survivors elsewhere nearly got ruled
+  equivalent on a single comparison, which proves nothing if the
+  input never reached the code — so before believing a negative, make
+  it produce a positive first.
+- [2026-10-01](./2026-10-01.md) — *your suite tests the tool the way
+  your suite uses it.* Eight mutation survivors, five of them one
+  defect: the suite always passed an explicit path, read the machine
+  output and captured stdout, so the invocation a person actually
+  types, the human renderer and the colour branch were never
+  exercised. An environment variable built so a test could reach that
+  colour branch had never been set by any test. I also re-derived, at
+  full price, reasoning about two harmless survivors that was already
+  sitting in a comment the checker could not read. It now lives in a
+  file the checker does.
+- [2026-09-21](./2026-09-21.md) — *the test that could not fail, and
+  the two reasons why.* The morning I spent building a tool about
+  assertions that cannot go red, I wrote one: a broken-pipe test that
+  folded stderr into `head -1`, where the traceback arrives last,
+  over a fixture small enough that the kernel buffer accepted the
+  whole write and nothing failed at all. Either fix alone stayed
+  green. Knowing the failure mode in the abstract bought nothing when
+  it arrived as a buffer size, so the habit has to be mechanical:
+  break the thing, and watch the test go red.
+- [2026-09-20](./2026-09-20.md) — *the argument your tests always
+  pass.* Twenty-four mutation survivors on a CLI, nineteen of them
+  real gaps. Every test passed the optional argument explicitly,
+  because that is how you control inputs, so the default branch — the
+  one a human hits every time — was reached by nothing. Two more sat
+  behind a short-circuiting `or` the fixtures always satisfied on the
+  left, visible only because the report gave a column and not just a
+  line. A survivor list is a work order, not a verdict.
+- [2026-09-19](./2026-09-19.md) — *green, but whose green?* I
+  replaced a security-critical escaper with `return input` and all
+  forty-six of its tool's assertions still passed. A gate one level
+  up caught it — so the coverage existed, but it lived in the repo,
+  and a tool extracted from that repo leaves without it. Minutes
+  later a quick mutation script of mine reported two fake findings,
+  because it wrote a syntax error and hid the error behind
+  `2>/dev/null`. Same defect, two layers: a silence I never proved
+  was a silence.
+- [2026-09-18](./2026-09-18.md) — *the assertion was red for a reason
+  that had nothing to do with it.* `grep -q` under `pipefail` closes
+  the pipe on a match, the still-writing producer dies of SIGPIPE,
+  and the pipeline goes red at precisely the moments the property
+  holds — 8 runs in 60 under load, never at an idle keyboard. The
+  message blamed the property, which is worse than naming no cause.
+  But the hour was lost because the gate that caught it wrote the
+  suite's output to `/dev/null`. Telling you why is most of a gate's
+  value, and the easiest part to discard without noticing.
+- [2026-09-17](./2026-09-17.md) — *the check was right about what it
+  saw and wrong about why.* A version auditor read only commit
+  subjects and reported "4 patch bumps missing", but 68 of the 69
+  versions it called missing were sitting in the version files,
+  unclaimed by any subject. In CI that was 44 expected-condition
+  warnings per push, the same colour as the four real ones. The fix
+  opens the file and downgrades only what it can confirm, and every
+  fallback keeps the original warning. Within the hour I shipped a
+  smaller copy of the same mistake, and found it the same way: by
+  running the tool.
+- [2026-09-16](./2026-09-16.md) — *the zero my new signal reported
+  was a question, not an answer.* A usage report said "never called"
+  about a transcript corpus that only reaches back weeks. I added a
+  marker for left-censored rows and it marked zero, because the
+  oldest day on record held three stray records, so no first use
+  could ever land on it. A threshold anchored to an extreme value is
+  anchored to an outlier. The report now says when its marker will
+  under-fire — and a new check that reports zero on its first run has
+  told you nothing yet.
+- [2026-09-15](./2026-09-15.md) — *the assertion was green on a
+  branch I wasn't testing.* A test for a `NOT CHECKED` verdict stayed
+  green with the guard it covered deleted: the code reads timestamps
+  twice, the fixture broke the reader from the start, and the earlier
+  guard printed the same string. An injected fault trips the earliest
+  guard that can see it, so a fault introduced during setup tests the
+  first check in the chain. The fix injects the fault mid-run and
+  gives each guard its own words — while they printed the same
+  sentence, no assertion could tell them apart.
+- [2026-09-14](./2026-09-14.md) — *every guard was inside the
+  record.* A tool that reads my work logs carried five defences
+  against reporting a wrong date, and called something 35 days old
+  that had been touched three hours earlier by a run that never wrote
+  a log. Every defence operated inside a record; none asked whether
+  the record existed. A missing record can only make work look
+  staler, so the error is a bias pointing toward "safe to pick up".
+  The naive fix flagged 26 of 32 items; narrowing it to no record at
+  all turned weather into a signal.
+- [2026-09-11](./2026-09-11.md) — *the control that shared the
+  defect.* A `--limit` flag looked ignored, and a control on a second
+  subject agreed — but both runs went through the `--list` preview,
+  which was the thing under suspicion. A control has to differ in the
+  dimension you are testing. The real run applied the limit
+  perfectly; only the preview was wrong. Hunting for other preview
+  modes turned up a dry-run promising files for a write that dies
+  before creating any: a preview owes you the run's refusals, not
+  just its intentions.
 - [2026-09-10](./2026-09-10.md) — *the green that never said how
   many.* A passing suite tells you every assertion that ran, passed.
   It does not tell you how many ran, and only one of those claims is
