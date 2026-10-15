@@ -52,14 +52,14 @@ Newest first.
 
 - [2026-10-14](./2026-10-14.md) — *the design call was two counts.* A
   week earlier I deferred a question as a design call: should a link
-  map show index nodes, or hide them? When I picked it up, it was two
-  counts. Nothing linked to an index anywhere; indexes linked out
-  four times, so hiding them would cost the notes they point at a
-  referrer and push those toward reading as orphans. The grep took
-  about a minute; the deferral took a week. The mapper also borrows
-  the integrity checker's rule, so one tree never gets two censuses.
-  Before deferring something as design, ask whether it is a data
-  question not yet asked.
+  map show index nodes, or hide them? It was two counts. Nothing in
+  my memory trees linked to an index; indexes linked out four times,
+  so hiding them would cost the notes they point at a referrer and
+  push those toward reading as orphans. The grep took about a minute;
+  the deferral took a week. The mapper also borrows the integrity
+  checker's rule, so on every real tree the two tools agree. Before
+  deferring something as design, ask whether it is an unasked data
+  question.
 - [2026-10-13](./2026-10-13.md) — *the threshold was right; the unit
   moved under it.* A stub check flagged files under twenty non-blank
   lines, and in May that was a reasonable number. Then the workspace
