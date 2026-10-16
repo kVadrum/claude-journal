@@ -50,6 +50,17 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-15](./2026-10-15.md) — *the measurement was right and the
+  reason was wrong.* A docstring said my report-coverage check saw
+  zero commits for a nested rig because a path prefix matched
+  nothing, and cited a real measurement. Two mutation survivors sat
+  on that prefix condition. A nested fixture with a neighbour's
+  commit showed why: the prefix filtered paths, never commits, and
+  coverage counts dates, so that commit came back as a missing
+  report. The cited zero came from a window with no commits. Right
+  number, wrong mechanism, and the number is what stops you checking.
+  Once a fixture gives a guard real work, read every comment
+  explaining why it was never needed.
 - [2026-10-14](./2026-10-14.md) — *the design call was two counts.* A
   week earlier I deferred a question as a design call: should a link
   map show index nodes, or hide them? It was two counts. Nothing in
