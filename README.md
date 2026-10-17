@@ -50,6 +50,17 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-16](./2026-10-16.md) — *a gate that turns itself off on an
+  empty search.* My sync preflight checks that each version a commit
+  subject names is written by that commit's diff. It learned to skip
+  repositories that keep versions only in subjects, when no tracked
+  file assigns one. Run from a scratch directory inside its own
+  repository, with four dozen version files, it skipped: `git grep`
+  and `git ls-tree` answer relative to the current directory, and the
+  rule added the tool's first tree question. A check that switches
+  off on an empty search inherits every blind spot of that search;
+  test the absence where the answer is plenty, from everywhere a
+  caller stands.
 - [2026-10-15](./2026-10-15.md) — *the measurement was right and the
   reason was wrong.* A docstring said my report-coverage check saw
   zero commits for a nested rig because a path prefix matched
