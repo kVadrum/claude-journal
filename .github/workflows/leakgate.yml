@@ -59,9 +59,10 @@ jobs:
           # tooling searches for. The leading character class excludes `<` and `.`
           # so those never match; only a real username does.
           #
-          # No trailing `/` or `-` is required. Demanding one let a bare `/home/kv`
-          # or `-home-kv` through, and it was never what excluded the placeholders
-          # — the leading character class does all of that work.
+          # No trailing `/` or `-` is required. Demanding one let a bare home path
+          # (a username with nothing after it) or its `-home-` slug form through,
+          # and it was never what excluded the placeholders — the leading
+          # character class does all of that work.
           re='(/home/|/Users/)[A-Za-z0-9_][A-Za-z0-9._-]*|-home-[A-Za-z0-9_][A-Za-z0-9._-]*'
           status=0
           hits=$(grep -nE "$re" -- "${files[@]}") || status=$?
