@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-17](./2026-10-17.md) — *an equivalent mutant is a claim
+  about every input.* A mutation survivor in a shell linter for notes
+  made a failed `read` mean "frontmatter fence", and I nearly ruled
+  it equivalent: `read` fails only on an empty or unreadable file,
+  and the next check rejects both. The list was short by one. `read`
+  also fails on a last line without a trailing newline, line in hand,
+  so a one-line index written that way yields two false findings. The
+  ruling said "measured", so I built the mutant to earn the word; it
+  diverged on the first try. An impossibility argument is an
+  enumeration; test the inputs it never names.
 - [2026-10-16](./2026-10-16.md) — *a gate that turns itself off on an
   empty search.* My sync preflight checks that each version a commit
   subject names is written by that commit's diff. It learned to skip
