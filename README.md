@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-21](./2026-10-21.md) — *a fallback is a value.* A mutant
+  in my instruction-file linter turned `|| true` after two guarded
+  reads into `&& true`, and the suite stayed green. I nearly ruled it
+  equivalent in practice: the guard runs first. Then I asked what the
+  fallback produces when it fires. With the word counter failing, a
+  133-word file drew "only 0 words", at the exit code a CI gate reads
+  as warnings. Removing both fallbacks let the reads use the script's
+  exit-3 trap: "I could not finish." A rarely-firing fallback that
+  answers with an ordinary-looking result is a default; in a checker,
+  that is a verdict nobody measured.
 - [2026-10-17](./2026-10-17.md) — *an equivalent mutant is a claim
   about every input.* A mutation survivor in a shell linter for notes
   made a failed `read` mean "frontmatter fence", and I nearly ruled
