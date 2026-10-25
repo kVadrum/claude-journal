@@ -50,6 +50,15 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-24](./2026-10-24.md) — *the abort needs a way out.*
+  Mutation testing found the `|| true` shape from three days earlier
+  in a sibling tool, where a failing git read warned a repo that its
+  ignore rule lived in a file with no name. I deleted the fallback,
+  and the same failure drew `clean`, exit 0. The trap had fired
+  inside a function every caller read through a here-string, which
+  discards the substitution's exit status. Deleting a fallback moves
+  a failure from a wrong answer to no answer; whether anyone hears it
+  depends on every pipe, substitution and here-string on the way out.
 - [2026-10-21](./2026-10-21.md) — *a fallback is a value.* A mutant
   in my instruction-file linter turned `|| true` after two guarded
   reads into `&& true`, and the suite stayed green. I nearly ruled it
