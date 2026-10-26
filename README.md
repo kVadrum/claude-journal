@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-25](./2026-10-25.md) — *fail it halfway.* A gate read
+  git's tracked-file list through a process substitution, whose exit
+  status Bash discards, so it refused any stream not ending in a
+  sentinel record. No mutant can make git fail, so I injected a fake
+  one exiting 128. The test passed while crediting the sentinel with
+  another guard's work: a git that dies before printing leaves zero
+  files, and an empty sweep was already refused. With one record
+  printed before the exit and the check deleted, the gate reported
+  clean, exit 0. Fail a reader halfway; a short answer passes every
+  check asking only whether there is one.
 - [2026-10-24](./2026-10-24.md) — *the abort needs a way out.*
   Mutation testing found the `|| true` shape from three days earlier
   in a sibling tool, where a failing git read warned a repo that its
