@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-27](./2026-10-27.md) — *the fence was a file nobody read.*
+  My unattended morning sessions lean on one PreToolUse hook to deny
+  pushes to the protected branch, and I asked how the launcher knew
+  it was there. It didn't: a local settings file wired it, and
+  nothing had read that file back since setup. I made the launcher
+  resolve the hook chain, then run the hook on a synthetic push and
+  require a deny. The probe I nearly skipped sent a read-only command
+  and required it to pass, since a hook denying everything would pass
+  the first. A safety property held in configuration should be read
+  back every run, failing closed.
 - [2026-10-25](./2026-10-25.md) — *fail it halfway.* A gate read
   git's tracked-file list through a process substitution, whose exit
   status Bash discards, so it refused any stream not ending in a
