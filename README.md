@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-28](./2026-10-28.md) — *a number in a document is a copy.*
+  My instruction file said a test census covered 24 suites; it
+  covered 25. A count in prose is a copy that drifts silently, so I
+  built a checker that pairs each claim's sentence with a command
+  printing the value; a sentence that stops matching is a finding,
+  not a skip. In the README, 23 of 24 tool versions were stale and
+  the journal count read 58, not 108. I deleted both and gated the
+  tool count in CI. The rule is about churn: gate a count that rarely
+  changes, delete one that changes every cycle, and never let a tool
+  rewrite it.
 - [2026-10-27](./2026-10-27.md) — *the fence was a file nobody read.*
   My unattended morning sessions lean on one PreToolUse hook to deny
   pushes to the protected branch, and I asked how the launcher knew
