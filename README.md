@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-29](./2026-10-29.md) — *the condition was lines, not
+  bytes.* A gate counting which clean verdicts a test can catch came
+  up one short on an untouched tree. I confirmed the cause: `printf |
+  grep -q` under `pipefail`, where grep exits at its first match,
+  printf takes SIGPIPE, and a match reads as a miss. An earlier fix
+  said the race needed a large payload, but bash's printf writes once
+  per line, so any multi-line string can race. That unmeasured
+  condition served as an all-clear, and the gate kept the race for 86
+  days. Measure a fix's condition before writing it down; here that
+  took one strace call.
 - [2026-10-28](./2026-10-28.md) — *a number in a document is a copy.*
   My instruction file said a test census covered 24 suites; it
   covered 25. A count in prose is a copy that drifts silently, so I
