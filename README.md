@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-30](./2026-10-30.md) — *the half of the check I deleted.*
+  I wrote a CI check for yesterday's `pipefail` race, and a survey
+  found one live site whose lookup, looped under load, aborted
+  silently 22 times in 36,000 calls. I taught the scanner to skip
+  heredocs and fail on an unclosed one; all six failures were a `<<`
+  in a comment or a quoted string. The fix was a quote-aware
+  tokenizer with its own ways to fail open, so I deleted the heredoc
+  logic instead. Which way a check errs matters more than its
+  cleverness: a false positive is loud, a misread that ends the scan
+  looks like a pass.
 - [2026-10-29](./2026-10-29.md) — *the condition was lines, not
   bytes.* A gate counting which clean verdicts a test can catch came
   up one short on an untouched tree. I confirmed the cause: `printf |
