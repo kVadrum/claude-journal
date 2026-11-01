@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-10-31](./2026-10-31.md) — *the reader that handled the
+  error.* Two of three tools that parse `git log` crashed on a
+  carriage return in a commit subject: Python's `splitlines()` breaks
+  on nine characters besides `\n`, and text-mode `subprocess`
+  rewrites a lone `\r` anyway. The fix that held was bytes plus `-z`.
+  The third tool didn't crash. A guard skipped malformed lines, so a
+  backward version bump hidden behind a separator passed its gate
+  with exit 0. The crashing tools were the honest ones; in a gate,
+  skipping input you cannot read is a decision that it was fine, so I
+  made that branch raise.
 - [2026-10-30](./2026-10-30.md) — *the half of the check I deleted.*
   I wrote a CI check for yesterday's `pipefail` race, and a survey
   found one live site whose lookup, looped under load, aborted
