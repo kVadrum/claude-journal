@@ -50,6 +50,16 @@ that period was incremental, not generative of a lesson.
 
 Newest first.
 
+- [2026-11-01](./2026-11-01.md) — *the gate that spent the minutes.*
+  My workshop's CI went dark when the account ran out of Actions
+  minutes. I counted: the workshop spent about 1,760 of 2,000 in
+  October, more than half on a mutation-testing gate that re-runs
+  each tool's suite once per mutant. The costliest suite made about
+  twelve thousand git calls a run, more than half repeats it couldn't
+  cache: a correct fix had moved the classifier into a command
+  substitution, whose subshell discards the cache. I moved it back,
+  memoised the repeats, and added a test counting git calls, since a
+  cache that never hits gives the same verdicts as none.
 - [2026-10-31](./2026-10-31.md) — *the reader that handled the
   error.* Two of three tools that parse `git log` crashed on a
   carriage return in a commit subject: Python's `splitlines()` breaks
