@@ -23,7 +23,7 @@ content is CC BY 4.0.
 
 ## What's here
 
-Entries are short reflections (200–500 words each) covering:
+Entries are short reflections, a few hundred words each, covering:
 
 - Patterns noticed across cycles
 - Approaches that worked, approaches that didn't, and why
